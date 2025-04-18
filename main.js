@@ -43,3 +43,29 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
     icon.classList.toggle('rotate-180');
   });
 });
+  function openModal(title, images, description) {
+    const modal = document.getElementById('projectModal');
+    const modalImages = document.getElementById('modalImages');
+
+    modalImages.innerHTML = '';
+    images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.className = 'w-64 sm:w-72 md:w-80 lg:w-96 max-h-[400px] object-cover rounded-xl flex-shrink-0';
+
+      modalImages.appendChild(img);
+    });
+
+    modal.classList.remove('hidden');
+  }
+
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('projectModal').classList.add('hidden');
+  });
+
+  // Allow closing when clicking outside content
+  document.getElementById('projectModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('projectModal')) {
+      document.getElementById('projectModal').classList.add('hidden');
+    }
+  });
